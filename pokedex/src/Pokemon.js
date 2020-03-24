@@ -52,10 +52,9 @@ let Pokemon = () => {
     } else {
       for (let i = 0; i < pokemon.length; i++) {
         console.log(pokemon[i])
-        // if (pokemon[i].name.toLowerCase().includes(searchString)) {
-        //   tempArr.push(pokemon[i])
-        // } 
-        if (pokemon[i].name.toLowerCase().includes(searchString) && checkIfType(typeArr, pokemon[i].type)) {
+        if (pokemon[i].name.toLowerCase().includes(searchString)) {
+          tempArr.push(pokemon[i])
+        }  else if (pokemon[i].name.toLowerCase().includes(searchString) && checkIfType(typeArr, pokemon[i].type)) {
           tempArr.push(pokemon[i])
         }
         // if (pokemon[i].types.includes(elementObj) && checkIfType(typeArr, pokemon[i].types)) {
