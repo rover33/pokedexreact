@@ -43,10 +43,10 @@ let Pokemon = () => {
     if (grass) typeArr.push('Grass')
     if (poison) typeArr.push('Poison')
     if (water) typeArr.push('Water')
-    if(weakfire) typeArr.push("Fire")
-    if(weakgrass) typeArr.push("Grass")
-    if(weakwater) typeArr.push("Water")
-    if(weakpoison) typeArr.push("Poison")
+    if (weakfire) typeArr.push("Fire")
+    if (weakgrass) typeArr.push("Grass")
+    if (weakwater) typeArr.push("Water")
+    if (weakpoison) typeArr.push("Poison")
     if (searchString.length <= 0) {
       tempArr = pokemon
     } else {
@@ -56,10 +56,19 @@ let Pokemon = () => {
           tempArr.push(pokemon[i])
         }  else if (pokemon[i].name.toLowerCase().includes(searchString) && checkIfType(typeArr, pokemon[i].type)) {
           tempArr.push(pokemon[i])
+        } else if (pokemon[i].name.toLowerCase().includes(searchString) && checkIfType(typeArr, pokemon[i].weaknesses)) {
+            tempArr.push(pokemon[i])
+        } else if (pokemon[i].name.toLowerCase().includes(searchString) && checkIfType(typeArr, pokemon[i].type) && checkIfType(typeArr, pokemon[i].weaknesses)) {
+          tempArr.push(pokemon[i])
+        } else if (pokemon[i].type.includes(elementObj) && checkIfType(typeArr, pokemon[i].weaknesses)) {
+          tempArr.push(pokemon[i])
+        } else if (pokemon[i].type.includes(elementObj) && checkIfType(typeArr, pokemon[i].weaknesses)) {
+          tempArr.push(pokemon[i])
+        } else if (pokemon[i].type.includes(elementObj)) {
+          tempArr.push(pokemon[i])
+        } else if (pokemon[i].weaknesses.includes(elementObj)) {
+          tempArr.push(pokemon[i])
         }
-        // if (pokemon[i].types.includes(elementObj) && checkIfType(typeArr, pokemon[i].types)) {
-        //   tempArr.push(pokemon[i])
-        // }
     }
   }
 
