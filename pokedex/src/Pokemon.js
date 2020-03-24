@@ -60,7 +60,7 @@ let Pokemon = () => {
             tempArr.push(pokemon[i])
         } else if (pokemon[i].name.toLowerCase().includes(searchString) && checkIfType(typeArr, pokemon[i].type) && checkIfType(typeArr, pokemon[i].weaknesses)) {
           tempArr.push(pokemon[i])
-        } else if (pokemon[i].type.includes(elementObj) && checkIfType(typeArr, pokemon[i].weaknesses)) {
+        } else if (pokemon[i].type.includes(elementObj) && checkIfType(typeArr, pokemon[i].type)) {
           tempArr.push(pokemon[i])
         } else if (pokemon[i].type.includes(elementObj) && checkIfType(typeArr, pokemon[i].weaknesses)) {
           tempArr.push(pokemon[i])
