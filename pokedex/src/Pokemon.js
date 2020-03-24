@@ -1,8 +1,11 @@
 import React, {useState, useEffect} from 'react';
+
 let Pokemon = () => {
   let [pokemon, setPokemon] = useState([]);
   let [searchString, setSearchString] = useState('');
-  let [elementObj, setElementObj] = useState({fire: false, water: false, poison:false, grass:false})
+  let [elementObj, setElementObj] = useState(
+      {fire: false, water: false, poison:false, grass:false, weakgrass: false, weakfire: false, weakwater: false, weakpoison :false}
+    )
 
   useEffect(() => {
     let isCurrent = true;
@@ -19,30 +22,47 @@ let Pokemon = () => {
       };
     }, [pokemon]);
 
-
-  let checkboxClick = e => {
+  
+  let checkboxClick = (e) => {
+    elementObj[e.target.name] = !elementObj[e.target.name]
     setElementObj(elementObj);
-    console.log(elementObj)
-    e.stopPropagation();
+    console.log(e.target.name)
   }
 
   let onChange = e => setSearchString(e.target.value);
 
+  let checkIfType = (arr1, arr2) => {
+    return arr1.some(item => arr2.includes(item));
+  };
+
   let renderPokedex = () => {
+    let { fire, grass, poison, water, weakfire, weakwater, weakpoison, weakgrass } = elementObj
     let tempArr = []
+    let typeArr = []
+    if (fire) typeArr.push('Fire')
+    if (grass) typeArr.push('Grass')
+    if (poison) typeArr.push('Poison')
+    if (water) typeArr.push('Water')
+    if(weakfire) typeArr.push("Fire")
+    if(weakgrass) typeArr.push("Grass")
+    if(weakwater) typeArr.push("Water")
+    if(weakpoison) typeArr.push("Poison")
     if (searchString.length <= 0) {
       tempArr = pokemon
     } else {
       for (let i = 0; i < pokemon.length; i++) {
-        if (pokemon[i].name.toLowerCase().includes(searchString)) {
+        console.log(pokemon[i])
+        // if (pokemon[i].name.toLowerCase().includes(searchString)) {
+        //   tempArr.push(pokemon[i])
+        // } 
+        if (pokemon[i].name.toLowerCase().includes(searchString) && checkIfType(typeArr, pokemon[i].type)) {
           tempArr.push(pokemon[i])
         }
-        if (checkboxClick && pokemon[i].type.includes(elementObj)) {
-          tempArr.push(pokemon[i])
-        }
+        // if (pokemon[i].types.includes(elementObj) && checkIfType(typeArr, pokemon[i].types)) {
+        //   tempArr.push(pokemon[i])
+        // }
     }
   }
-
 
     return <ul>
       {tempArr.map(el => (
@@ -84,20 +104,21 @@ let Pokemon = () => {
     </div>
     <br />
     <br />
-    {/* <div>
+     <div>
       <label>Pokemon Weakness</label>
       <br />
-      <input type="checkbox" id="weakgrass" name="weakgrass" onClick={checkboxClick()}/>
-      <label for="weakgrass">Grass</label>
-      <input type="checkbox" id="weakpoison" name="weakpoison"/>
-      <label for="weakposion">Poison</label>
-      <input type="checkbox" id="weakwater" name="weakwater"/>
-      <label for="weakwater">Water</label>
-      <input type="checkbox" id="weakfire" name="weakfire"/>
-      <label for="weakfire">Fire</label>
-    </div> */}
+      <input type="checkbox" id="weakgrass" name="weakgrass" onClick={checkboxClick}/>
+      <label htmlFor="weakgrass">Grass</label>
+      <input type="checkbox" id="weakpoison" name="weakpoison" onClick={checkboxClick}/>
+      <label htmlFor="weakposion">Poison</label>
+      <input type="checkbox" id="weakwater" name="weakwater" onClick={checkboxClick}/>
+      <label htmlFor="weakwater">Water</label>
+      <input type="checkbox" id="weakfire" name="weakfire" onClick={checkboxClick}/>
+      <label htmlFor="weakfire">Fire</label>
+    </div>
     {renderPokedex()}
     </div>
   );
 };
+
 export default Pokemon
