@@ -1,0 +1,39 @@
+.header {
+  color: red;
+  display: flex;
+  justify-content: center;
+}
+
+.pokeSearchDiv {
+  display: flex;
+  justify-content: center;
+}
+
+.pokeInputs {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  margin-top: 2rem;
+}
+
+.pokeElement,
+.pokeWeakness {
+  text-align: center;
+}
+
+.pokeCheckbox {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.pokeDexList {
+  display: flex;
+  justify-content: center;
+}
+
+.pokeList {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}

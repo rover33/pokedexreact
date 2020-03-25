@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import "./Pokemon.css";
+
 let Pokemon = () => {
   let [pokemon, setPokemon] = useState([]);
   let [searchString, setSearchString] = useState("");
@@ -89,17 +91,19 @@ let Pokemon = () => {
     return (
       <ul>
         {tempArr.map(el => (
-          <li key={el.id}>
-            Name: {el.name}
-            <br />
-            Pokedex Number: {el.num}
-            <br />
-            Pokemon Type: {el.type}
-            <br />
-            Weakness: {el.weaknesses}
-            <br />
-            <img src={el.img} />
-          </li>
+          <div key={el.id} className="pokeList">
+            <li>
+              Name: {el.name}
+              <br />
+              Pokedex Number: {el.num}
+              <br />
+              Pokemon Type: {el.type + ""}
+              <br />
+              Weakness: {el.weaknesses + ""}
+              <br />
+            </li>
+            <img src={el.img} alt="pokeImage" />
+          </div>
         ))}
       </ul>
     );
@@ -107,76 +111,86 @@ let Pokemon = () => {
 
   return (
     <div>
-      <input type="search" placeholder="pokemon" onChange={e => onChange(e)} />
-      <br />
-      <br />
-      <div>
-        <label>Pokemon Element Type</label>
-        <br />
+      <h1 className="header">Pokedex</h1>
+      <div className="pokeSearchDiv">
         <input
-          type="checkbox"
-          id="grass"
-          name="grass"
-          onClick={e => checkboxTypeClick(e)}
+          type="search"
+          className="pokeSearch"
+          placeholder="pokemon"
+          onChange={e => onChange(e)}
         />
-        <label htmlFor="grass">Grass</label>
-        <input
-          type="checkbox"
-          id="poison"
-          name="poison"
-          onClick={e => checkboxTypeClick(e)}
-        />
-        <label htmlFor="posion">Poison</label>
-        <input
-          type="checkbox"
-          id="water"
-          name="water"
-          onClick={e => checkboxTypeClick(e)}
-        />
-        <label htmlFor="water">Water</label>
-        <input
-          type="checkbox"
-          id="fire"
-          name="fire"
-          onClick={e => checkboxTypeClick(e)}
-        />
-        <label htmlFor="fire">Fire</label>
       </div>
-      <br />
-      <br />
-      <div>
-        <label>Pokemon Weakness</label>
-        <br />
-        <input
-          type="checkbox"
-          id="weakgrass"
-          name="weakgrass"
-          onClick={e => checkboxWeaknessClick(e)}
-        />
-        <label htmlFor="weakgrass">Grass</label>
-        <input
-          type="checkbox"
-          id="weakpoison"
-          name="weakpoison"
-          onClick={e => checkboxWeaknessClick(e)}
-        />
-        <label htmlFor="weakposion">Poison</label>
-        <input
-          type="checkbox"
-          id="weakwater"
-          name="weakwater"
-          onClick={e => checkboxWeaknessClick(e)}
-        />
-        <label htmlFor="weakwater">Water</label>
-        <input
-          type="checkbox"
-          id="weakfire"
-          name="weakfire"
-          onClick={e => checkboxWeaknessClick(e)}
-        />
-        <label htmlFor="weakfire">Fire</label>
+      <div className="pokeInputs">
+        <div className="pokeElement">
+          <label>Pokemon Element Type</label>
+          <br />
+          <div className="pokeCheckbox">
+            <input
+              type="checkbox"
+              id="grass"
+              name="grass"
+              onClick={e => checkboxTypeClick(e)}
+            />
+            <label htmlFor="grass">Grass</label>
+            <input
+              type="checkbox"
+              id="poison"
+              name="poison"
+              onClick={e => checkboxTypeClick(e)}
+            />
+            <label htmlFor="posion">Poison</label>
+            <input
+              type="checkbox"
+              id="water"
+              name="water"
+              onClick={e => checkboxTypeClick(e)}
+            />
+            <label htmlFor="water">Water</label>
+            <input
+              type="checkbox"
+              id="fire"
+              name="fire"
+              onClick={e => checkboxTypeClick(e)}
+            />
+            <label htmlFor="fire">Fire</label>
+          </div>
+        </div>
+        <div className="pokeWeakness">
+          <label>Pokemon Weakness</label>
+          <br />
+          <div className="pokeCheckbox">
+            <input
+              type="checkbox"
+              id="weakgrass"
+              name="weakgrass"
+              onClick={e => checkboxWeaknessClick(e)}
+            />
+            <label htmlFor="weakgrass">Grass</label>
+            <input
+              type="checkbox"
+              id="weakpoison"
+              name="weakpoison"
+              onClick={e => checkboxWeaknessClick(e)}
+            />
+            <label htmlFor="weakposion">Poison</label>
+            <input
+              type="checkbox"
+              id="weakwater"
+              name="weakwater"
+              onClick={e => checkboxWeaknessClick(e)}
+            />
+            <label htmlFor="weakwater">Water</label>
+            <input
+              type="checkbox"
+              id="weakfire"
+              name="weakfire"
+              onClick={e => checkboxWeaknessClick(e)}
+            />
+            <label htmlFor="weakfire">Fire</label>
+          </div>
+        </div>
       </div>
-      {renderPokedex()}
+      <div className="pokeDexList">{renderPokedex()}</div>
     </div>
   );
 };
