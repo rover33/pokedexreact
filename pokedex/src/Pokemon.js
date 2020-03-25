@@ -32,7 +32,7 @@ let Pokemon = () => {
     return () => {
       isCurrent = false;
     };
-  }, [pokemon]);
+  }, []);
 
   let checkboxTypeClick = e => {
     elementObj[e.target.name] = !elementObj[e.target.name];
