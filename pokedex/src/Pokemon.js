@@ -35,15 +35,15 @@ let Pokemon = () => {
   }, []);
 
   let checkboxTypeClick = e => {
-    elementObj[e.target.name] = !elementObj[e.target.name];
-    setElementObj(elementObj);
-    setPokemon(pokemon);
+    let tempElements = { ...elementObj };
+    tempElements[e.target.name] = !elementObj[e.target.name];
+    setElementObj(tempElements);
   };
 
   let checkboxWeaknessClick = e => {
-    elementWeakness[e.target.name] = !elementWeakness[e.target.name];
-    setElementWeakness(elementWeakness);
-    setPokemon(pokemon);
+    let tempWeakness = { ...elementWeakness };
+    tempWeakness[e.target.name] = !elementWeakness[e.target.name];
+    setElementWeakness(tempWeakness);
   };
 
   let onChange = e => setSearchString(e.target.value);
@@ -53,6 +53,7 @@ let Pokemon = () => {
   };
 
   let renderPokedex = () => {
+    console.log("calling render pokedex");
     let { fire, grass, poison, water } = elementObj;
     let { weakfire, weakwater, weakpoison, weakgrass } = elementWeakness;
     let tempArr = new Set();
@@ -74,13 +75,16 @@ let Pokemon = () => {
       tempArr = pokemon;
     } else {
       for (let i = 0; i < pokemon.length; i++) {
-        if (pokemon[i].name.toLowerCase().includes(searchString)) {
+        if (
+          searchString.length > 0 &&
+          pokemon[i].name.toLowerCase().includes(searchString)
+        ) {
           tempArr.add(pokemon[i]);
         }
-        if (checkIfType(typeArr, pokemon[i].type)) {
+        if (typeArr.length > 0 && checkIfType(typeArr, pokemon[i].type)) {
           tempArr.add(pokemon[i]);
         }
-        if (checkIfType(weakArr, pokemon[i].weaknesses)) {
+        if (weakArr.length > 0 && checkIfType(weakArr, pokemon[i].weaknesses)) {
           tempArr.add(pokemon[i]);
         }
       }
